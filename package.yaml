@@ -21,6 +21,53 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- text
+- unordered-containers
+- aeson
+- req
+- microlens
+- microlens-th
+  
+default-extensions:
+  - FlexibleInstances
+  - FlexibleContexts
+  - InstanceSigs
+  - MultiParamTypeClasses
+  - ConstraintKinds
+  - LambdaCase
+  - EmptyCase
+  - TupleSections
+  - BangPatterns
+  - TypeApplications
+  - StandaloneDeriving
+  - OverloadedStrings
+  - RankNTypes
+  - ScopedTypeVariables
+  - NamedFieldPuns
+  - DuplicateRecordFields
+  - GeneralizedNewtypeDeriving
+  - DataKinds
+  - ConstraintKinds
+  - TypeApplications
+  - KindSignatures
+  - StandaloneKindSignatures
+  - DeriveFoldable
+  - DeriveFunctor
+  - DeriveGeneric
+  - DeriveLift
+  - DeriveTraversable 
+  - GeneralizedNewtypeDeriving
+  - GADTs
+  - PolyKinds
+  - ViewPatterns
+  - PatternSynonyms
+  - TypeFamilies
+    
+ghc-options:
+  - -Wall
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wredundant-constraints
 
 library:
   source-dirs: src
