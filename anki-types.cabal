@@ -26,8 +26,14 @@ source-repository head
 library
   exposed-modules:
       Anki.Types
+      Anki.Types.Action
       Anki.Types.Common
+      Anki.Types.Decks
       Anki.Types.Lens
+      Anki.Types.Notes
+      Anki.Types.Params
+      Anki.Types.Run
+      Anki.Types.TH
   other-modules:
       Paths_anki_types
   hs-source-dirs:
@@ -73,6 +79,7 @@ library
     , microlens
     , microlens-th
     , req
+    , template-haskell
     , text
     , unordered-containers
   default-language: Haskell2010
@@ -127,6 +134,7 @@ test-suite anki-types-test
     , microlens
     , microlens-th
     , req
+    , template-haskell
     , text
     , unordered-containers
   default-language: Haskell2010

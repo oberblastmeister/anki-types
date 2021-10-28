@@ -27,6 +27,7 @@ dependencies:
 - req
 - microlens
 - microlens-th
+- template-haskell
   
 default-extensions:
   - FlexibleInstances
