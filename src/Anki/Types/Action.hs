@@ -8,9 +8,9 @@ import qualified Data.Char as Char
 
 data Action
   = AddNote
-  | AddNotes
-  | CanAddNotes
-  | UpdateNoteFields
+  -- | AddNotes
+  -- | CanAddNotes
+  -- | UpdateNoteFields
   | GetNumCardsReviewedToday
   | DeckNames
   deriving (Show, Eq)

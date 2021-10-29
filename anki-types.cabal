@@ -33,6 +33,7 @@ library
       Anki.Types.Notes
       Anki.Types.Params
       Anki.Types.Run
+      Anki.Types.Statistics
       Anki.Types.TH
   other-modules:
       Paths_anki_types

@@ -1,4 +1,5 @@
 {-# LANGUAGE UndecidableInstances #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module Anki.Types.Params where
 
@@ -10,23 +11,13 @@ import qualified Data.Aeson as Aeson
 import qualified Data.Aeson.Types as Aeson.Types
 import Data.Proxy (Proxy (Proxy))
 import Data.Text (Text)
+import Anki.Types.Decks
+import Anki.Types.Statistics
+import Anki.Types.TH (deriveParams, deriveResult)
 
-type Params :: Action -> *
-type family Params a where
-  Params 'AddNote = AddNoteParams
-  Params 'GetNumCardsReviewedToday = Nil
-  Params 'DeckNames = Nil
+deriveParams ''Action
 
-type IsNil :: * -> Bool
-type family IsNil a where
-  IsNil Nil = 'True
-  IsNil _ = 'False
-
-type Result :: Action -> *
-type family Result a where
-  Result 'AddNote = AddNoteResult
-  Result 'GetNumCardsReviewedToday = Int
-  Result 'DeckNames = [Text]
+deriveResult ''Action
 
 data AnkiReq a p = AnkiReq
   { action :: a,
@@ -37,16 +28,10 @@ data AnkiReq a p = AnkiReq
 instance (p ~ Params a, Aeson.ToJSON p, isVoid ~ IsNil p, KnownBool isVoid) => Aeson.ToJSON (AnkiReq (SAction a) p) where
   toJSON AnkiReq {action, params} =
     Aeson.object $
-      if boolSing (Proxy @isVoid)
-        then
-          [ "action" .= action,
-            "version" .= defaultVersion
-          ]
-        else
-          [ "action" .= action,
-            "version" .= defaultVersion,
-            "params" .= params
-          ]
+      ["params" .= params | not $ boolSing $ Proxy @isVoid]
+        ++ [ "action" .= action,
+             "version" .= defaultVersion
+           ]
 
 data AnkiResult a r = AnkiResult
   { result :: r,

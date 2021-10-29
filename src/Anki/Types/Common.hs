@@ -27,3 +27,8 @@ instance KnownBool 'True where
 
 instance KnownBool 'False where
   boolSing _ = False
+
+type IsNil :: * -> Bool
+type family IsNil a where
+  IsNil Nil = 'True
+  IsNil _ = 'False
